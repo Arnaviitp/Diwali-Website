@@ -6,18 +6,20 @@
   <title>PixelConquest Diwali Store 🪔</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Yatra+One&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('https://i.imgur.com/KD3Pqlo.png') repeat;
+      background: url('https://images.unsplash.com/photo-1603899124659-26c1b0b2a2d8?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       overflow-x: hidden;
     }
+
     header {
-      background: linear-gradient(90deg, #3b0069, #5e00a0);
+      background: rgba(59, 0, 105, 0.9);
       display: flex; justify-content: space-between; align-items: center;
       padding: 15px 60px; position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(6px);
     }
     header h1 {
       font-family: 'Yatra One', cursive;
@@ -41,8 +43,7 @@
     .hero-text {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center;
-      background: rgba(0, 0, 0, 0.4);
+      text-align: center; background: rgba(0, 0, 0, 0.5);
       padding: 30px 60px; border-radius: 20px;
     }
     .hero-text h2 {
@@ -51,7 +52,7 @@
     }
     .hero-text p { font-size: 1.1rem; }
 
-    .section { padding: 70px 10%; text-align: center; }
+    .section { padding: 70px 10%; text-align: center; backdrop-filter: brightness(1.1); }
     .section h2 {
       font-family: 'Yatra One', cursive;
       color: #ffd700; font-size: 2rem; margin-bottom: 40px;
@@ -82,26 +83,25 @@
     }
 
     footer {
-      background: linear-gradient(90deg, #3b0069, #5e00a0);
+      background: rgba(59, 0, 105, 0.9);
       text-align: center; padding: 30px;
       color: #ffd700;
     }
 
     .music-btn {
       position: fixed; bottom: 25px; right: 25px;
-      width: 70px; height: 70px;
+      width: 75px; height: 75px;
       background: radial-gradient(circle, gold 30%, #3b0069 70%);
       border: 3px solid gold;
       border-radius: 50%;
       box-shadow: 0 0 20px gold;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
       animation: glow 2s infinite alternate;
     }
     .music-btn.paused {
-      opacity: 0.6;
-      box-shadow: none;
-      animation: none;
+      opacity: 0.6; box-shadow: none; animation: none;
     }
     @keyframes glow {
       from { box-shadow: 0 0 10px gold; }
@@ -194,7 +194,7 @@
   </footer>
 
   <button id="musicBtn" class="music-btn">🪔</button>
-  <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_5cc96d09c2.mp3?filename=indian-instrumental-ambient-123401.mp3" loop></audio>
+  <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_5cc96d09c2.mp3?filename=indian-instrumental-ambient-123401.mp3" loop muted></audio>
 
   <script>
     const slides = document.querySelectorAll('.slide');
@@ -207,19 +207,19 @@
 
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
-    music.volume = 0.4;
-    music.play().catch(()=>{});
+    music.volume = 0.5;
+    music.play().catch(() => {});
     btn.addEventListener('click', () => {
-      if (music.paused) {
+      if (music.muted) {
+        music.muted = false;
         music.play();
         btn.classList.remove('paused');
       } else {
-        music.pause();
+        music.muted = true;
         btn.classList.add('paused');
       }
     });
   </script>
-
 </body>
 </html>
 
