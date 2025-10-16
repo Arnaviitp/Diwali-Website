@@ -3,348 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PixelConquest | Diwali Edition</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>PixelConquest Diwali Store 🪔</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Yatra+One&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(180deg, #1a0f29, #2a1a40, #3a0e25);
+      font-family: 'Poppins', sans-serif;
+      background: url('https://i.imgur.com/KD3Pqlo.png') repeat;
+      background-size: cover;
       color: #fff;
       overflow-x: hidden;
-      transition: background 0.5s, color 0.5s;
     }
-
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      background: linear-gradient(90deg, #3b0069, #5e00a0);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 60px; position: sticky; top: 0; z-index: 100;
     }
-
     header h1 {
-      font-size: 1.8rem;
-      color: #ffda79;
-      text-shadow: 0 0 10px #ffd166;
+      font-family: 'Yatra One', cursive;
+      color: #ffd700; font-size: 1.8rem;
     }
-
     nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #fff;
-      transition: 0.3s;
+      text-decoration: none; color: #ffd700; margin: 0 15px;
+      font-weight: 600; transition: color 0.3s;
     }
+    nav a:hover { color: #fff; }
 
-    nav a:hover {
-      color: #ffae00;
+    .hero {
+      position: relative; height: 90vh; overflow: hidden;
     }
-
-    .theme-toggle {
-      background: none;
-      border: 2px solid #ffae00;
-      color: #ffae00;
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
+    .slide {
+      position: absolute; width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1s ease-in-out;
     }
-
-    .theme-toggle:hover {
-      background: #ffae00;
-      color: #000;
-    }
-
-    /* Image Slider */
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 70vh;
-      overflow: hidden;
-    }
-
-    .slides {
-      display: flex;
-      transition: transform 0.8s ease;
-    }
-
-    .slides img {
-      width: 100%;
-      height: 70vh;
-      object-fit: cover;
-    }
-
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.3);
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 50%;
-    }
-
-    .slider-btn:hover {
-      background: rgba(255, 255, 255, 0.6);
-      color: #000;
-    }
-
-    #prev { left: 20px; }
-    #next { right: 20px; }
-
-    .products {
-      padding: 60px 80px;
+    .slide.active { opacity: 1; }
+    .hero-text {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px 60px; border-radius: 20px;
     }
-
-    .products h2 {
-      font-size: 2.3rem;
-      margin-bottom: 30px;
-      color: #ffd166;
-      text-shadow: 0 0 15px #ffae00;
+    .hero-text h2 {
+      font-family: 'Yatra One', cursive;
+      font-size: 2.5rem; color: #ffd700; margin-bottom: 10px;
     }
+    .hero-text p { font-size: 1.1rem; }
 
-    .grid {
+    .section { padding: 70px 10%; text-align: center; }
+    .section h2 {
+      font-family: 'Yatra One', cursive;
+      color: #ffd700; font-size: 2rem; margin-bottom: 40px;
+    }
+    .products, .offers {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
     }
-
-    .product-card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 15px;
-      overflow: hidden;
-      transition: 0.4s;
-      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid gold;
+      border-radius: 20px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
-    .product-card:hover {
+    .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 0 25px #ffae00;
+      box-shadow: 0 0 20px gold;
     }
-
-    .product-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
+    .card img {
+      width: 100%; border-radius: 15px; margin-bottom: 15px;
+      height: 250px; object-fit: cover;
     }
-
-    .product-info {
-      padding: 15px;
-    }
-
-    .product-info h3 {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-
-    .product-info p {
-      color: #ffda79;
-      font-weight: bold;
-    }
-
-    .cta {
-      text-align: center;
-      padding: 70px 20px;
-      background: radial-gradient(circle at center, #ffae00, #3a0e25);
-      margin-top: 60px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .cta h2 {
-      color: #fff;
-      margin-bottom: 20px;
-      font-size: 2rem;
-    }
-
-    .cta button {
-      background: #fff;
-      color: #000;
-      border: none;
-      padding: 12px 25px;
-      font-weight: bold;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .cta button:hover {
-      background: #ffda79;
-      transform: scale(1.05);
+    .card h3 {
+      font-family: 'Yatra One', cursive; color: #ffd700;
+      margin-bottom: 10px;
     }
 
     footer {
-      text-align: center;
-      padding: 25px;
-      background: rgba(255,255,255,0.05);
-      font-size: 0.9rem;
-      color: #ddd;
+      background: linear-gradient(90deg, #3b0069, #5e00a0);
+      text-align: center; padding: 30px;
+      color: #ffd700;
     }
 
-    /* Floating Diyas Animation */
-    .diya {
-      position: absolute;
-      width: 40px;
-      animation: float 10s linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      50% { transform: translateY(-40px) rotate(10deg); opacity: 0.8; }
-      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    }
-
-    /* Sparkles */
-    .sparkle {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      background: #ffae00;
+    .music-btn {
+      position: fixed; bottom: 25px; right: 25px;
+      width: 70px; height: 70px;
+      background: radial-gradient(circle, gold 30%, #3b0069 70%);
+      border: 3px solid gold;
       border-radius: 50%;
-      pointer-events: none;
-      animation: sparkle 1s linear infinite;
+      box-shadow: 0 0 20px gold;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      animation: glow 2s infinite alternate;
+    }
+    .music-btn.paused {
+      opacity: 0.6;
+      box-shadow: none;
+      animation: none;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px gold; }
+      to { box-shadow: 0 0 25px #ffd700; }
     }
 
-    @keyframes sparkle {
-      0% { transform: scale(0.5); opacity: 1; }
-      100% { transform: scale(1.5); opacity: 0; }
-    }
-
-    /* Dark Mode */
-    .dark-mode {
-      background: #fff;
-      color: #111;
-    }
-
-    .dark-mode header {
-      background: rgba(0,0,0,0.05);
-    }
-
-    .dark-mode .products h2, 
-    .dark-mode .cta h2 {
-      color: #e79a00;
+    @media (max-width: 768px) {
+      header { flex-direction: column; padding: 20px; }
+      nav { margin-top: 10px; }
+      .hero-text h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>🪔 PixelConquest</h1>
+    <h1>PixelConquest 🪔</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Products</a>
-      <a href="#">Offers</a>
-      <a href="#">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#offers">Offers</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle">☀️</button>
   </header>
 
-  <!-- Image Slider -->
-  <div class="slider">
-    <div class="slides" id="slides">
-      <img src="https://images.unsplash.com/photo-1604200214361-2b8c5f1a2cf3?auto=format&fit=crop&w=1200&q=80" alt="Diwali Lights">
-      <img src="https://images.unsplash.com/photo-1606066544200-61b0370d1a7e?auto=format&fit=crop&w=1200&q=80" alt="Diwali Diyas">
-      <img src="https://images.unsplash.com/photo-1603532283078-9b0a8d0e0192?auto=format&fit=crop&w=1200&q=80" alt="Diwali Candles">
+  <section id="home" class="hero">
+    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1603899124659-26c1b0b2a2d8?auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1603899124659-3bdf5d97aaf6?auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="hero-text">
+      <h2>Celebrate Diwali in Style ✨</h2>
+      <p>Discover festive collections and joyful offers!</p>
     </div>
-    <button class="slider-btn" id="prev">❮</button>
-    <button class="slider-btn" id="next">❯</button>
-  </div>
+  </section>
 
-  <section class="products">
-    <h2>🛍️ Diwali Festive Collection</h2>
-    <div class="grid">
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1603565816060-6e7e2c6f08b4?auto=format&fit=crop&w=800&q=80" alt="">
-        <div class="product-info"><h3>Festive Kurta</h3><p>₹1,299</p></div>
+  <section id="products" class="section">
+    <h2>Festive Products</h2>
+    <div class="products">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1610034838108-bc1b6e4d9e97?auto=format&fit=crop&w=800&q=80" alt="Festive Kurta">
+        <h3>Festive Kurta</h3>
+        <p>Elegant traditional wear for the perfect festive look.</p>
       </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1622207047179-9cb396f5d7d3?auto=format&fit=crop&w=800&q=80" alt="">
-        <div class="product-info"><h3>Ethnic Shoes</h3><p>₹1,899</p></div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1606813902902-67d5d1a46c24?auto=format&fit=crop&w=800&q=80" alt="Ethnic Shoes">
+        <h3>Ethnic Shoes</h3>
+        <p>Walk in style with handcrafted festive footwear.</p>
       </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1603532283078-9b0a8d0e0192?auto=format&fit=crop&w=800&q=80" alt="">
-        <div class="product-info"><h3>Glowing Saree</h3><p>₹2,499</p></div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1606062092360-ea4c9e09c70e?auto=format&fit=crop&w=800&q=80" alt="Decor Lamps">
+        <h3>Decor Lamps</h3>
+        <p>Brighten your home with warm, radiant diya lights.</p>
       </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1596464716121-3d8c7e83cc05?auto=format&fit=crop&w=800&q=80" alt="">
-        <div class="product-info"><h3>Diwali Hoodie</h3><p>₹1,999</p></div>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1612204804194-3f1a4dc5d3a7?auto=format&fit=crop&w=800&q=80" alt="">
-        <div class="product-info"><h3>Royal Sherwani</h3><p>₹3,499</p></div>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1603565816060-6e7e2c6f08b4?auto=format&fit=crop&w=800&q=80" alt="">
-        <div class="product-info"><h3>Traditional Dupatta</h3><p>₹999</p></div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603899125003-18aaedc9b779?auto=format&fit=crop&w=800&q=80" alt="Sweets Box">
+        <h3>Sweets Box</h3>
+        <p>Spread sweetness with beautifully wrapped festive treats.</p>
       </div>
     </div>
   </section>
 
-  <section class="cta">
-    <h2>✨ Celebrate this Diwali with Style & Smiles ✨</h2>
-    <button>Explore Offers</button>
+  <section id="offers" class="section">
+    <h2>Special Diwali Offers 🎁</h2>
+    <div class="offers">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1604328698692-672b6e76c4c9?auto=format&fit=crop&w=800&q=80" alt="Offer 1">
+        <h3>Buy 1 Get 1 Free</h3>
+        <p>On selected festive decor and accessories.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" alt="Offer 2">
+        <h3>Flat 40% Off</h3>
+        <p>On Diwali clothing and ethnic wear.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603899124659-3bdf5d97aaf6?auto=format&fit=crop&w=800&q=80" alt="Offer 3">
+        <h3>Festive Combos</h3>
+        <p>Mix & match deals for your festive celebrations.</p>
+      </div>
+    </div>
   </section>
 
-  <footer>© 2025 PixelConquest | Designed with ❤️ for Diwali Season 🎆</footer>
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>📍 IIT Patna | ✉️ hello@pixelconquest.com | 📞 +91 98765 43210</p>
+  </section>
 
-  <!-- Diyas -->
-  <img class="diya" src="https://png.pngtree.com/png-vector/20221020/ourmid/pngtree-diya-lamp-indian-festival-png-image_6341787.png" style="top:10%; left:5%;" />
-  <img class="diya" src="https://png.pngtree.com/png-vector/20221020/ourmid/pngtree-diya-lamp-indian-festival-png-image_6341787.png" style="top:30%; left:80%;" />
-  <img class="diya" src="https://png.pngtree.com/png-vector/20221020/ourmid/pngtree-diya-lamp-indian-festival-png-image_6341787.png" style="top:60%; left:15%;" />
+  <footer>
+    <p>© 2025 PixelConquest Diwali Store | Designed with ❤️ for the Festival of Lights</p>
+  </footer>
+
+  <button id="musicBtn" class="music-btn">🪔</button>
+  <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_5cc96d09c2.mp3?filename=indian-instrumental-ambient-123401.mp3" loop></audio>
 
   <script>
-    // Image Slider
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
-    let index = 0;
-
-    document.getElementById('next').onclick = () => {
-      index = (index + 1) % totalSlides;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    };
-
-    document.getElementById('prev').onclick = () => {
-      index = (index - 1 + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    };
-
-    // Auto-slide
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
     setInterval(() => {
-      index = (index + 1) % totalSlides;
-      slides.style.transform = `translateX(-${index * 100}%)`;
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
     }, 4000);
 
-    // Sparkles
-    document.addEventListener('mousemove', (e) => {
-      const sparkle = document.createElement('div');
-      sparkle.classList.add('sparkle');
-      sparkle.style.left = e.pageX + 'px';
-      sparkle.style.top = e.pageY + 'px';
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 1000);
-    });
-
-    // Dark / Light Mode
-    const toggle = document.getElementById('themeToggle');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      toggle.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    music.volume = 0.4;
+    music.play().catch(()=>{});
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btn.classList.remove('paused');
+      } else {
+        music.pause();
+        btn.classList.add('paused');
+      }
     });
   </script>
+
 </body>
 </html>
 
