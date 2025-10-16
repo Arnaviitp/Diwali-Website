@@ -284,12 +284,14 @@
             width: 95%; 
             max-width: 500px; 
             height: auto;
+            min-height: 350px;
             border-radius: 30px;
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 2;
             object-fit: cover;
             border: 3px solid rgba(247, 158, 31, 0.3);
+            background: linear-gradient(135deg, rgba(247,158,31,0.2), rgba(237,187,77,0.2));
         }
         .floating-diya {
             position: absolute; 
@@ -904,7 +906,10 @@
             </div>
             <div class="hero-image">
                 <div class="image-decoration"></div>
-                <img src="https://images.unsplash.com/photo-1605902394069-ff2ae2229e93?w=600&h=700&fit=crop&q=80" alt="Beautiful Diwali Diyas" class="hero-img">
+                <img id="heroImage" src="https://images.pexels.com/photos/3721088/pexels-photo-3721088.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                     alt="Beautiful Diwali Diyas" 
+                     class="hero-img"
+                     onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2019/10/27/16/29/diwali-4582015_960_720.jpg';">
                 <div class="floating-diya diya-1">🪔</div>
                 <div class="floating-diya diya-2">🪔</div>
                 <div class="floating-diya diya-3">🪔</div>
@@ -1135,7 +1140,6 @@
             menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Close menu when clicking on a link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -1158,6 +1162,24 @@
                 container.appendChild(particle);
             }
         }
+
+        // Image fallback alternatives
+        const heroImageAlternatives = [
+            'https://images.pexels.com/photos/3721088/pexels-photo-3721088.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://cdn.pixabay.com/photo/2019/10/27/16/29/diwali-4582015_960_720.jpg',
+            'https://images.pexels.com/photos/1729797/pexels-photo-1729797.jpeg?auto=compress&cs=tinysrgb&w=600',
+            'https://cdn.pixabay.com/photo/2016/11/29/03/11/diya-1867346_960_720.jpg'
+        ];
+        
+        let currentImageIndex = 0;
+        const heroImg = document.getElementById('heroImage');
+        
+        heroImg.addEventListener('error', function() {
+            currentImageIndex++;
+            if (currentImageIndex < heroImageAlternatives.length) {
+                this.src = heroImageAlternatives[currentImageIndex];
+            }
+        });
 
         // Shopping Cart
         let cartCount = 0;
@@ -1216,7 +1238,7 @@
             });
         });
 
-        // Sparkle Effect on Hover
+        // Sparkle Effect
         document.querySelectorAll('.btn-primary').forEach(button => {
             button.addEventListener('mouseenter', function() {
                 const rect = this.getBoundingClientRect();
@@ -1256,12 +1278,10 @@
             observer.observe(card);
         });
 
-        // Add to Cart Buttons
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', addToCart);
         });
 
-        // Primary Buttons
         document.querySelectorAll('.featured-buttons .btn-primary, .hero-buttons .btn-primary').forEach(button => {
             button.addEventListener('click', function(e) {
                 createBurstEffect(this);
@@ -1269,7 +1289,7 @@
             });
         });
 
-        // Parallax Effect
+        // Parallax
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             document.querySelectorAll('.hero-overlay, .rangoli-corner').forEach((element, index) => {
@@ -1277,12 +1297,10 @@
             });
         });
 
-        // Animations Style
         const style = document.createElement('style');
         style.textContent = '@keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(400px);opacity:0}}';
         document.head.appendChild(style);
 
-        // Initialize
         window.addEventListener('DOMContentLoaded', () => createDiyaParticles());
         window.addEventListener('load', () => {
             document.body.style.opacity = '0';
@@ -1296,5 +1314,3 @@
     </script>
 </body>
 </html>
-
-
