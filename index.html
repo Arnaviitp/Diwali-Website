@@ -9,8 +9,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1603899124659-26c1b0b2a2d8?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(rgba(25,0,40,0.95), rgba(35,0,60,0.95)),
+                  url('https://images.unsplash.com/photo-1603899124659-26c1b0b2a2d8?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat fixed;
       color: #fff;
       overflow-x: hidden;
     }
@@ -40,19 +40,31 @@
       opacity: 0; transition: opacity 1s ease-in-out;
     }
     .slide.active { opacity: 1; }
+    .hero::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(25,0,40,0.6);
+    }
     .hero-text {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center; background: rgba(0, 0, 0, 0.5);
+      text-align: center; z-index: 5;
       padding: 30px 60px; border-radius: 20px;
     }
     .hero-text h2 {
       font-family: 'Yatra One', cursive;
-      font-size: 2.5rem; color: #ffd700; margin-bottom: 10px;
+      font-size: 2.6rem; color: #ffd700; margin-bottom: 10px;
+      text-shadow: 0 0 15px #000;
     }
     .hero-text p { font-size: 1.1rem; }
 
-    .section { padding: 70px 10%; text-align: center; backdrop-filter: brightness(1.1); }
+    .section {
+      padding: 70px 10%;
+      text-align: center;
+      background: rgba(35,0,70,0.75);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
     .section h2 {
       font-family: 'Yatra One', cursive;
       color: #ffd700; font-size: 2rem; margin-bottom: 40px;
@@ -63,7 +75,7 @@
       gap: 30px;
     }
     .card {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       border: 2px solid gold;
       border-radius: 20px;
       padding: 20px;
@@ -99,14 +111,10 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.8rem;
       animation: glow 2s infinite alternate;
+      z-index: 1000;
     }
-    .music-btn.paused {
-      opacity: 0.6; box-shadow: none; animation: none;
-    }
-    @keyframes glow {
-      from { box-shadow: 0 0 10px gold; }
-      to { box-shadow: 0 0 25px #ffd700; }
-    }
+    .music-btn.paused { opacity: 0.6; box-shadow: none; animation: none; }
+    @keyframes glow { from { box-shadow: 0 0 10px gold; } to { box-shadow: 0 0 25px #ffd700; } }
 
     @media (max-width: 768px) {
       header { flex-direction: column; padding: 20px; }
@@ -129,8 +137,8 @@
 
   <section id="home" class="hero">
     <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=1350&q=80');"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1603899124659-26c1b0b2a2d8?auto=format&fit=crop&w=1350&q=80');"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1603899124659-3bdf5d97aaf6?auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1604051862476-1419cb8b26c1?auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=1350&q=80');"></div>
     <div class="hero-text">
       <h2>Celebrate Diwali in Style ✨</h2>
       <p>Discover festive collections and joyful offers!</p>
@@ -141,22 +149,22 @@
     <h2>Festive Products</h2>
     <div class="products">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1610034838108-bc1b6e4d9e97?auto=format&fit=crop&w=800&q=80" alt="Festive Kurta">
+        <img src="https://images.unsplash.com/photo-1604841238351-84cfb7030d6d?auto=format&fit=crop&w=800&q=80" alt="Festive Kurta">
         <h3>Festive Kurta</h3>
         <p>Elegant traditional wear for the perfect festive look.</p>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1606813902902-67d5d1a46c24?auto=format&fit=crop&w=800&q=80" alt="Ethnic Shoes">
+        <img src="https://images.unsplash.com/photo-1593032465174-5c5f17f52ff1?auto=format&fit=crop&w=800&q=80" alt="Ethnic Shoes">
         <h3>Ethnic Shoes</h3>
         <p>Walk in style with handcrafted festive footwear.</p>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1606062092360-ea4c9e09c70e?auto=format&fit=crop&w=800&q=80" alt="Decor Lamps">
+        <img src="https://images.unsplash.com/photo-1603899125003-18aaedc9b779?auto=format&fit=crop&w=800&q=80" alt="Decor Lamps">
         <h3>Decor Lamps</h3>
         <p>Brighten your home with warm, radiant diya lights.</p>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1603899125003-18aaedc9b779?auto=format&fit=crop&w=800&q=80" alt="Sweets Box">
+        <img src="https://images.unsplash.com/photo-1633702227530-f4bbf9b637d5?auto=format&fit=crop&w=800&q=80" alt="Sweets Box">
         <h3>Sweets Box</h3>
         <p>Spread sweetness with beautifully wrapped festive treats.</p>
       </div>
@@ -172,12 +180,12 @@
         <p>On selected festive decor and accessories.</p>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" alt="Offer 2">
+        <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=800&q=80" alt="Offer 2">
         <h3>Flat 40% Off</h3>
         <p>On Diwali clothing and ethnic wear.</p>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1603899124659-3bdf5d97aaf6?auto=format&fit=crop&w=800&q=80" alt="Offer 3">
+        <img src="https://images.unsplash.com/photo-1603899124659-26c1b0b2a2d8?auto=format&fit=crop&w=800&q=80" alt="Offer 3">
         <h3>Festive Combos</h3>
         <p>Mix & match deals for your festive celebrations.</p>
       </div>
